@@ -49,15 +49,21 @@ def stop_detection():
     if cap is not None:
         cap.release()  # Lepaskan video capture
 
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route('/')
 def index():
+    return render_template('home.html') 
+
+
+@app.route('/detection', methods=['GET', 'POST'])
+def detection():
     if request.method == 'POST':
         action = request.form.get('action')
         if action == 'start':
             start_detection()  # Mulai deteksi saat tombol ditekan
         elif action == 'stop':
             stop_detection()
-    return render_template('index.html', class_counts = class_counts['apple'])
+    return render_template('detection.html', class_counts = class_counts['apple'])
 
 def generate_frames():
     global cap
@@ -112,7 +118,7 @@ def generate_frames():
 @app.route('/video')
 def video():
     if cap is None:
-        return redirect(url_for('index'))  # Jika video belum dimulai, redirect ke halaman utama
+        return redirect(url_for('detection'))  # Jika video belum dimulai, redirect ke halaman utama
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
