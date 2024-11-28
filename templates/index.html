@@ -5,19 +5,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Object Detection Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 12px 24px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        #video-frame {
+            /* Disembunyikan sampai tombol Start ditekan */
+            margin-top: 20px;
+            border: 5px solid #4CAF50;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            height: auto;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            button {
+                width: 80%;
+                margin: 10px auto;
+                display: block;
+            }
+        }
+    </style>
     <script>
         function startVideo() {
             document.getElementById('video-frame').style.display = 'block';
+        }
+        function stopVideo() {
+            document.getElementById('video-frame').style.display = 'none';
         }
     </script>
 </head>
 
 <body>
-    <h1>Maju Jaya Farm</h1>
-    <form method="POST" onsubmit="startVideo()">
-        <button type="submit">Start Detection</button>
+    <h1>Maju Jaya Farm - Object Detection Monitoring</h1>
+    <form method="POST">
+        <button type="submit" name="action" value="start" onclick="startVideo()">Start Detection</button>
+        <button type="submit" name="action" value="stop" onclick="stopVideo()">Stop Detection</button>
     </form>
     <img src="{{ url_for('video') }}" width="800" id="video-frame">
+
+    <!-- Hasil panen  -->
+    {% if class_counts %}
+    <h2>Jumlah Hasil Panen</h2>
+    <p>{{ class_counts }}</p>
+    {% else %}
+    <p>Click Start Detection to count</p>
+    {% endif %}
 </body>
 
 </html>

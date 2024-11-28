@@ -23,6 +23,9 @@ c_line = y1_line - m_line * x1_line
 class_counts = defaultdict(int)
 crossed_ids = set()
 
+# Variabel global untuk mengontrol status deteksi
+detection_running = False
+
 # Fungsi untuk membuka ulang video
 def reset_video():
     global cap
@@ -31,15 +34,30 @@ def reset_video():
 
 # Fungsi untuk memulai deteksi
 def start_detection():
-    global cap
-    if cap is None:
+    # global cap
+    # if cap is None:
+    #     cap = cv2.VideoCapture(video_file)
+    global cap, detection_running, class_counts
+    class_counts = defaultdict(int)
+    if cap is None or not cap.isOpened():
         cap = cv2.VideoCapture(video_file)
+    detection_running = True
+
+def stop_detection():
+    global cap, detection_running
+    detection_running = False  # Menghentikan loop di generate_frames()
+    if cap is not None:
+        cap.release()  # Lepaskan video capture
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        start_detection()  # Mulai deteksi saat tombol ditekan
-    return render_template('index.html')
+        action = request.form.get('action')
+        if action == 'start':
+            start_detection()  # Mulai deteksi saat tombol ditekan
+        elif action == 'stop':
+            stop_detection()
+    return render_template('index.html', class_counts = class_counts['apple'])
 
 def generate_frames():
     global cap
