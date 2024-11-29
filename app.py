@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response, request, redirect, url_for
+from flask import Flask, render_template, Response, request, redirect, url_for, send_file
 import cv2
 from ultralytics import YOLO
 from collections import defaultdict
@@ -156,6 +156,13 @@ def video():
 def report():
     data = read_csv_data()  # Membaca data dari CSV
     return render_template('report.html', data=data)  # Mengirim data ke template HTML
+
+@app.route('/download_csv')
+def download_csv():
+    try:
+        return send_file('object_counts.csv', as_attachment=True)  # Mengirim file CSV sebagai lampiran
+    except Exception as e:
+        return f"An error occurred: {e}"
 
 
 if __name__ == "__main__":

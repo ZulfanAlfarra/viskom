@@ -51,6 +51,20 @@
         a:hover {
             background-color: #45a049;
         }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
@@ -80,7 +94,9 @@
     <p>No data available. Start detection to see results.</p>
     {% endif %}
 
-    <a href="/">Back to Home</a>
+    <a href="/" class="download-btn">Back to Home</a>
+    <a href="{{ url_for('download_csv') }}" class="download-btn">Download CSV</a> <!-- Tombol untuk download CSV -->
+
 </body>
 
 </html>
