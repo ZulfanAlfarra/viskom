@@ -91,7 +91,13 @@
     <!-- Hasil panen  -->
     {% if class_counts %}
     <h2>Jumlah Hasil Panen</h2>
-    <p>{{ class_counts }}</p>
+    <p>{{class_counts['apple']}}</p>
+
+    <!-- Kalo pake custom model -->
+    <!-- <p>Apel matang {{ class_counts['Apel Matang'] }}</p>
+    <p>Apel tidak matang {{ class_counts['Apel Tidak Matang'] }}</p> -->
+
+
     <button><a href="/report">Lihat report</a></button>
     {% else %}
     <p>Click Start Detection to count</p>

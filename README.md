@@ -18,7 +18,7 @@ Sebagai bagian dari tugas kelompok **Mata Kuliah Visi Komputer dan Robotika**, p
 |---------------|---------------|--------------------------------------------------|
 | **Zulfan Syahidan Alfarra**    | 217006099    | [https://github.com/ZulfanAlfarra](https://github.com/ZulfanAlfarra) | 
 | **Muhammad Shafwan Abdullah**   | 217006104    | [https://github.com/ShafwanAbd](https://github.com/ShafwanAbd) |
-| **Lutfi Julpian**     | 217006512    | [https://github.com/lutfijulpian](https://github.com/lutfijulpian) |
+| **Lutfi Julpian**     | 217006518    | [https://github.com/lutfijulpian](https://github.com/lutfijulpian) |
 | **Mohammad Faikar Natsir**     | 217006070  | [https://github.com/Mofasir](https://github.com/Mofasir) |
 
 ## 🎯 **Tujuan Proyek**
