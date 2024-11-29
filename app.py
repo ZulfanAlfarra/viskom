@@ -2,6 +2,9 @@ from flask import Flask, render_template, Response, request, redirect, url_for
 import cv2
 from ultralytics import YOLO
 from collections import defaultdict
+import csv
+from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -26,28 +29,56 @@ crossed_ids = set()
 # Variabel global untuk mengontrol status deteksi
 detection_running = False
 
+start_time = None
+
 # Fungsi untuk membuka ulang video
 def reset_video():
     global cap
     cap.release()  # Tutup video saat ini
     cap = cv2.VideoCapture(video_file)  # Buka kembali video
 
+def save_counts_to_csv():
+    file_exists = os.path.exists('object_counts.csv')
+
+    with open('object_counts.csv', mode='a', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        if not file_exists:
+            writer.writerow(['Buah', 'Hasil Panen', 'Start Time'])  
+
+        for class_name, count in class_counts.items():
+            writer.writerow([class_name, count, start_time.strftime('%Y-%m-%d %H:%M:%S')])  # Format waktu
+
+
 # Fungsi untuk memulai deteksi
 def start_detection():
     # global cap
     # if cap is None:
     #     cap = cv2.VideoCapture(video_file)
-    global cap, detection_running, class_counts
+    global cap, detection_running, class_counts, start_time
     class_counts = defaultdict(int)
     if cap is None or not cap.isOpened():
         cap = cv2.VideoCapture(video_file)
     detection_running = True
+    start_time = datetime.now()
 
 def stop_detection():
     global cap, detection_running
     detection_running = False  # Menghentikan loop di generate_frames()
     if cap is not None:
         cap.release()  # Lepaskan video capture
+        save_counts_to_csv()
+
+def read_csv_data():
+    csv_data = []
+    csv_file = 'object_counts.csv'
+    if os.path.exists(csv_file):  # Periksa apakah file CSV ada
+        with open(csv_file, mode='r') as file:
+            csv_reader = csv.DictReader(file)
+            csv_data = list(csv_reader)
+
+            csv_data = csv_data[-5:][::-1]
+    return csv_data  # Mengembalikan data dalam bentuk list of dictionaries
+
 
 
 @app.route('/')
@@ -120,6 +151,12 @@ def video():
     if cap is None:
         return redirect(url_for('detection'))  # Jika video belum dimulai, redirect ke halaman utama
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/report')
+def report():
+    data = read_csv_data()  # Membaca data dari CSV
+    return render_template('report.html', data=data)  # Mengirim data ke template HTML
+
 
 if __name__ == "__main__":
     app.run(debug=True)
