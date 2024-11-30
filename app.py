@@ -9,7 +9,7 @@ import os
 app = Flask(__name__)
 
 # Load the YOLO model
-model = YOLO('yolo11m.pt')
+model = YOLO('yolo11l.pt')
 class_list = model.names
 video_file = 'apel.mp4'
 
@@ -76,7 +76,7 @@ def read_csv_data():
             csv_reader = csv.DictReader(file)
             csv_data = list(csv_reader)
 
-            csv_data = csv_data[-5:][::-1]
+            csv_data = csv_data[-6:][::-1]
     return csv_data  # Mengembalikan data dalam bentuk list of dictionaries
 
 
@@ -94,7 +94,7 @@ def detection():
             start_detection()  # Mulai deteksi saat tombol ditekan
         elif action == 'stop':
             stop_detection()
-    return render_template('detection.html', class_counts = class_counts['apple'])
+    return render_template('detection.html', class_counts = class_counts)
 
 def generate_frames():
     global cap
@@ -103,7 +103,11 @@ def generate_frames():
         if not success:
             cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Restart video if it ends
             continue
+        
+        # # kalo pake costum model 
+        # results = model.track(frame, persist=True)
 
+        # kalo pake model yolo
         results = model.track(frame, persist=True, classes=[47])
 
         if results[0].boxes.data is not None:
