@@ -8,7 +8,15 @@
     <!-- Google Fonts for modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset untuk margin dan padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+<<<<<<< HEAD
             font-family: 'Roboto', sans-serif;
             background-color: #f9fafb;
             color: #333;
@@ -22,23 +30,50 @@
             margin-bottom: 20px;
             font-size: 2em;
             color: #444;
+=======
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #cce7e6);
+            color: #333;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #388E3C;
+            margin-bottom: 20px;
+            font-weight: 700;
+>>>>>>> 9cd01528f50f40ba86c67094e63e151812adeb62
         }
 
         table {
             width: 90%;
+<<<<<<< HEAD
             margin: 20px auto;
             border-collapse: collapse;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             background-color: #fff;
+=======
+            margin: 30px auto;
+            border-collapse: collapse;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+>>>>>>> 9cd01528f50f40ba86c67094e63e151812adeb62
         }
 
         th,
         td {
+<<<<<<< HEAD
             padding: 14px;
             border: 1px solid #e0e0e0;
+=======
+            padding: 16px;
+>>>>>>> 9cd01528f50f40ba86c67094e63e151812adeb62
             text-align: center;
+            font-size: 1.1em;
         }
 
         th {
@@ -48,17 +83,28 @@
         }
 
         tr:nth-child(even) {
+<<<<<<< HEAD
             background-color: #f3f4f6;
         }
 
         tr:hover {
             background-color: #e0f2ff;
             transition: background-color 0.3s ease;
+=======
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+            transform: scale(1.02);
+            transition: 0.3s ease-in-out;
+>>>>>>> 9cd01528f50f40ba86c67094e63e151812adeb62
         }
 
         a {
             display: inline-block;
             margin-top: 20px;
+<<<<<<< HEAD
             padding: 12px 24px;
             background-color: #2a9df4;
             color: white;
@@ -74,6 +120,25 @@
 
         .download-btn {
             background-color: #28a745;
+=======
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+        }
+
+        .download-btn {
+            background-color: #007bff;
+>>>>>>> 9cd01528f50f40ba86c67094e63e151812adeb62
         }
 
         .download-btn:hover {
@@ -83,6 +148,27 @@
         p {
             font-size: 1.1em;
             color: #666;
+        }
+
+        .cta-section {
+            margin-top: 40px;
+        }
+
+        /* Responsivitas untuk layar kecil */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            th,
+            td {
+                font-size: 1em;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -113,8 +199,16 @@
     <p>No data available. Start detection to see results.</p>
     {% endif %}
 
+<<<<<<< HEAD
     <a href="/" class="download-btn">Back to Home</a>
     <a href="{{ url_for('download_csv') }}" class="download-btn">Download CSV</a>
+=======
+    <div class="cta-section">
+        <a href="/" class="download-btn">Back to Home</a>
+        <a href="{{ url_for('download_csv') }}" class="download-btn">Download CSV</a> <!-- Tombol untuk download CSV -->
+    </div>
+
+>>>>>>> 9cd01528f50f40ba86c67094e63e151812adeb62
 </body>
 
 </html>

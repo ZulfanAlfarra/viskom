@@ -1,18 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profil Kelompok</title>
+    <style>
+        /* Reset beberapa margin dan padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4CAF50, #81C784);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-bottom: 5px solid #388E3C;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background-color: #2C6B3F;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-align: center;
+            padding: 18px 25px;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+        }
+
+        nav a.active {
+            background-color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .content {
+            text-align: center;
+            padding: 60px 30px;
+            background-color: white;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h3 {
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #388E3C;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .content a {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .content a:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+        }
+
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+
+        .team-member {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member img {
+            width: 150px; /* Ukuran gambar */
+            height: 150px; /* Ukuran gambar */
+            border-radius: 50%;
+            margin-bottom: 15px;
+            padding: 5px; /* Padding agar gambar tidak terlalu rapat dengan bingkai */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bingkai halus dengan bayangan */
+        }
+
+        .team-member h4 {
+            font-size: 1.4em;
+            color: #388E3C;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            font-size: 1em;
+            color: #777;
+        }
+
+        footer {
+            background-color: #f5f5f5; /* Tetap dengan warna hijau gelap */
+            color: #f0f0f0; /* Warna teks yang lebih terang */
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 40px;
+            font-size: 1.1em; /* Sedikit memperbesar ukuran teks */
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            nav a {
+                padding: 12px 18px;
+                font-size: 1em;
+            }
+
+            .content h3 {
+                font-size: 1.8em;
+            }
+
+            .content p {
+                font-size: 1.1em;
+            }
+
+            .content a {
+                padding: 12px 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <h1>profil kelompok</h1>
-    <p>kalo mau buat tampilan awalnya disini aja</p>
 
-    <h3><a href="/detection">Counting hasil panen</a></h3>
-    <h3><a href="/report">Report hasil panen</a></h3>
+    <header>
+        <h1>AppleSense</h1>
+        <p>Selamat datang di halaman utama! Temukan berbagai layanan dan informasi yang kami tawarkan.</p>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="/" class="active">Beranda</a>
+        <a href="/detection">Counting Hasil Panen</a>
+        <a href="/report">Report Hasil Panen</a>
+        <a href="/about">Tentang Kami</a>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h3>Selamat datang di halaman utama layanan kami!</h3>
+        <p>Silakan pilih layanan di atas untuk melanjutkan.</p>
+        <a href="/detection">Mulai Counting</a>
+        <a href="/report">Lihat Report</a>
+        <br>
+        <br>
+        <br>
+        <h3>Profil Kelompok</h3>
+        <div class="team">
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/ZulfanAlfarra/viskom/main/gambar/LutfiJupian.jpg" alt="Lutfi Julpian">
+                <h4>Lutfi Julpian</h4>
+                <p>217006518</p>
+            </div>
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/ZulfanAlfarra/viskom/main/gambar/zulfan.jpg" alt="Anggota 2">
+                <h4>Zulfan Syahidan A</h4>
+                <p>217006099</p>
+            </div>
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/ZulfanAlfarra/viskom/main/gambar/moh faikar.jpg" alt="Anggota 2">
+                <h4>Mohammad Faikar N</h4>
+                <p>217006070</p>
+            </div>
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/ZulfanAlfarra/viskom/main/gambar/shafwan.jpg" alt="Anggota 2">
+                <h4>Muhammad Shafwan A</h4>
+                <p>217006104</p>
+            </div>
+            <!-- Tambahkan anggota lainnya -->
+        </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Kelompok AppleSense. Semua hak dilindungi.</p>
+    </footer>
+
 </body>
-
 </html>
