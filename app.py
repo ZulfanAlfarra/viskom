@@ -48,7 +48,6 @@ def save_counts_to_csv():
         for class_name, count in class_counts.items():
             writer.writerow([class_name, count, start_time.strftime('%Y-%m-%d %H:%M:%S')])  # Format waktu
 
-
 # Fungsi untuk memulai deteksi
 def start_detection():
     # global cap
@@ -79,12 +78,9 @@ def read_csv_data():
             csv_data = csv_data[-6:][::-1]
     return csv_data  # Mengembalikan data dalam bentuk list of dictionaries
 
-
-
 @app.route('/')
 def index():
     return render_template('home.html') 
-
 
 @app.route('/detection', methods=['GET', 'POST'])
 def detection():
@@ -168,10 +164,9 @@ def download_csv():
     except Exception as e:
         return f"An error occurred: {e}"
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+if __name__ == "__main__":
+    app.run(debug=True)
