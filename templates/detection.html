@@ -15,6 +15,31 @@
             padding: 0;
         }
 
+        nav {
+            background-color: #2C6B3F;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+        }
+
+        nav a.active {
+            font-weight: bold;
+            background-color: #4CAF50;
+        }
+
         h1 {
             color: #2E7D32;
             margin: 30px 0 20px;
@@ -44,7 +69,6 @@
         }
 
         #video-frame {
-            /* Disembunyikan sampai tombol Start ditekan */
             margin-top: 20px;
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -74,6 +98,12 @@
                 margin: 10px auto;
                 display: block;
             }
+
+            nav a {
+                display: block;
+                text-align: center;
+                padding: 10px;
+            }
         }
     </style>
     <script>
@@ -87,6 +117,15 @@
 </head>
 
 <body>
+    <!-- Navbar -->
+    <nav>
+        <a href="/" class="">Beranda</a>
+        <a href="/detection" class="active">Counting Hasil Panen</a>
+        <a href="/report">Report Hasil Panen</a>
+        <a href="/about">Tentang Kami</a>
+    </nav>
+
+    <!-- Main Content -->
     <h1>AppleSense - Object Detection Monitoring</h1>
     <form method="POST">
         <button type="submit" name="action" value="start" onclick="startVideo()">Start Detection</button>
@@ -94,15 +133,14 @@
     </form>
     <img src="{{ url_for('video') }}" width="800" id="video-frame">
 
-    <!-- Hasil panen  -->
+    <!-- Hasil panen -->
     {% if class_counts %}
     <h2>Jumlah Hasil Panen</h2>
-    <p>{{class_counts['apple']}}</p>
+    <p>{{ class_counts['apple'] }}</p>
 
     <!-- Kalo pake custom model -->
     <!-- <p>Apel matang {{ class_counts['Apel Matang'] }}</p>
     <p>Apel tidak matang {{ class_counts['Apel Tidak Matang'] }}</p> -->
-
 
     <button><a href="/report">Lihat report</a></button>
     {% else %}
